@@ -1,6 +1,6 @@
 # Xcode
 .DS_Store
-*/build/*
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -14,8 +14,7 @@ profile
 *.moved-aside
 DerivedData
 .idea/
-*.hmap
-*.xccheckout
-
-#CocoaPods
-Pods
+SkillzTestWorkspace.xcworkspace/xcshareddata/**
+*.swp
+SkillzSDK-iOS/version_info.txt
+version_info.txt
