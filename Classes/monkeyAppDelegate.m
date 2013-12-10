@@ -8,6 +8,7 @@
 
 #import "monkeyAppDelegate.h"
 #import "monkeyViewController.h"
+#import <SkillzSDK-iOS/Skillz.h>
 
 @implementation monkeyAppDelegate
 
@@ -26,6 +27,8 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
+    [[Skillz skillzInstance] skillzInitForGameId:@"235" environment:SkillzSandbox];
+    
     return YES;
 }
 
