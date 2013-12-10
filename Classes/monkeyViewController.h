@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic, assign) IBOutlet UIButton *startButton;
+@property (nonatomic, assign) IBOutlet UIButton *multiplayerButton;
 @property (nonatomic, assign) IBOutlet UITextField *timeRemaining;
 @property (nonatomic, assign) IBOutlet UILabel *where;
 
@@ -26,5 +27,6 @@
 - (IBAction)startGameButton:(id)sender;
 - (void)guess:(id)sender;
 - (void)tick:(NSTimer *)timer;
+- (IBAction)startMultiplayerButton:(id)sender;
 @end
 

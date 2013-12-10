@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="monkeyViewController">
             <connections>
+                <outlet property="multiplayerButton" destination="OkD-xd-taZ" id="ohi-2L-yxm"/>
                 <outlet property="startButton" destination="18" id="32"/>
                 <outlet property="timeRemaining" destination="20" id="30"/>
                 <outlet property="view" destination="6" id="7"/>
@@ -116,7 +117,7 @@
                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="18">
-                    <rect key="frame" x="20" y="363" width="280" height="38"/>
+                    <rect key="frame" x="20" y="350" width="280" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                     <state key="normal" title="Start">
@@ -124,6 +125,17 @@
                     </state>
                     <connections>
                         <action selector="startGameButton:" destination="-1" eventType="touchUpInside" id="ghd-AH-9Wa"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OkD-xd-taZ">
+                    <rect key="frame" x="20" y="383" width="280" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                    <state key="normal" title="Multiplayer">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="startMultiplayerButton:" destination="-1" eventType="touchUpInside" id="LDr-F7-gdo"/>
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="19">

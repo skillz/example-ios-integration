@@ -11,6 +11,7 @@
 
 @implementation monkeyViewController
 @synthesize startButton;
+@synthesize multiplayerButton;
 @synthesize timeRemaining;
 @synthesize where;
 
@@ -98,6 +99,10 @@
 	[self becomeFirstResponder];
 }
 
+- (IBAction)startMultiplayerButton:(id)sender {
+    NSLog(@"Multiplayer button pressed.");
+}
+
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
 	NSLog(@"motion %@", event);
 	if (motion == UIEventSubtypeMotionShake) {
@@ -135,6 +140,7 @@
 	trans.fromValue = [NSNumber numberWithFloat:0.9];
 	trans.toValue = [NSNumber numberWithFloat:1.1];
 	[self.startButton.titleLabel.layer addAnimation:trans forKey:@"pulse"];
+    [self.multiplayerButton.titleLabel.layer addAnimation:trans forKey:@"pulse"];
 	for (int i=1001; i < 1010; ++i) [(UIButton *)[self.view viewWithTag:i] setEnabled:NO];
 	elapsed_seconds = 0;
 }
@@ -147,6 +153,7 @@
 		b.enabled = YES;
 	}
 	[self.startButton.titleLabel.layer removeAllAnimations];
+    [self.multiplayerButton.titleLabel.layer removeAllAnimations];
 	NSUInteger isCorrect = 0;
 	SecRandomCopyBytes(kSecRandomDefault, sizeof(NSUInteger), (void *)&isCorrect);
 	hiddenLocation = isCorrect % 9;
