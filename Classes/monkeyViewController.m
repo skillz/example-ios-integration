@@ -176,8 +176,12 @@ bool isWinningSquare = NO;
 	[self.startButton.titleLabel.layer removeAllAnimations];
     [self.multiplayerButton.titleLabel.layer removeAllAnimations];
 	NSUInteger isCorrect = 0;
-	SecRandomCopyBytes(kSecRandomDefault, sizeof(NSUInteger), (void *)&isCorrect);
-	hiddenLocation = isCorrect % 9;
+    if ([[Skillz skillzInstance] tournamentIsInProgress]) {
+        hiddenLocation = [Skillz getRandomNumberWithMin:0 andMax:9];
+    } else {
+        SecRandomCopyBytes(kSecRandomDefault, sizeof(NSUInteger), (void *)&isCorrect);
+        hiddenLocation = isCorrect % 9;
+    }
 	elapsed_seconds = 0;
 	[timeRemaining setText:@"00:00:00"];
 	if (clock) {
