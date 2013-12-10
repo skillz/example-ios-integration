@@ -16,6 +16,7 @@
 @synthesize timeRemaining;
 @synthesize where;
 
+bool isWinningSquare = NO;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -106,6 +107,8 @@
     [[Skillz skillzInstance] launchSkillzForOrientation:SkillzPortrait launchHasCompleted:^{
                                                                         NSLog(@"Skillz launch has completed.");
                                                                         [self resetGameAndClearBoard];
+                                                                        [startButton setHidden:YES];
+                                                                        [multiplayerButton setHidden:YES];
                                                                     } tournamentWillBegin:^(NSDictionary *matchRules) {
                                                                         NSLog(@"Tournament launching!");
         
@@ -113,7 +116,9 @@
                                                                         [self startGame];
                                                                     } skillzWillExit:^{
                                                                         NSLog(@"Skillz exiting.");
-                                                                        [self resetGameAndClearBoard];
+                                                                        [self resetGame];
+                                                                        [startButton setHidden:NO];
+                                                                        [multiplayerButton setHidden:NO];
                                                                     }];
 }
 
@@ -197,16 +202,17 @@
 	
 	CATransition *trans = [[CATransition alloc] init];
 	trans.duration = 0.25;
+    trans.delegate = self;
 	trans.type = kCATransitionFade;
 	[guessed.layer addAnimation:trans forKey:@"Fade"];
 	[trans release];
 	[CATransaction begin];
 	if (guessed.tag - 1001 == hiddenLocation) {
-		[guessed setTitle:@"" forState:UIControlStateNormal];
+		isWinningSquare = YES;
+        [guessed setTitle:@"" forState:UIControlStateNormal];
 		[guessed setImage:[UIImage imageNamed:@"monkey_toy"] forState:UIControlStateNormal];
 		[clock invalidate];
 		clock = nil;
-		[self resetGame];
 		[win play];
 	} else {
 		[guessed setTitle:@"×" forState:UIControlStateNormal];
@@ -215,6 +221,23 @@
 		[avp play];
 	}
 	[CATransaction commit];
+}
+
+- (void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (isWinningSquare) {
+        isWinningSquare = NO;
+        if ([[Skillz skillzInstance] tournamentIsInProgress]) {
+            [NSThread sleepForTimeInterval:2.0];
+            [[Skillz skillzInstance] displayTournamentResultsWithScore:@(elapsed_seconds)
+                                                        andScoreExtras:nil
+                                                        withCompletion:^{
+                                                            NSLog(@"Reported score to Skillz!");
+                                                            [self resetGameAndClearBoard];
+                                                        }];
+        } else {
+            [self resetGame];
+        }
+    }
 }
 
 - (void)tick:(NSTimer *)timer {
