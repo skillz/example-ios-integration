@@ -21,6 +21,7 @@
 @property (nonatomic, assign) IBOutlet UIButton *multiplayerButton;
 @property (nonatomic, assign) IBOutlet UITextField *timeRemaining;
 @property (nonatomic, assign) IBOutlet UILabel *where;
+@property (nonatomic, assign) IBOutlet UIButton *abortButton;
 
 @property (nonatomic, assign) IBOutlet UIButton *resetButton;
 
@@ -28,5 +29,6 @@
 - (void)guess:(id)sender;
 - (void)tick:(NSTimer *)timer;
 - (IBAction)startMultiplayerButton:(id)sender;
+- (IBAction)abortGame:(id)sender;
 @end
 

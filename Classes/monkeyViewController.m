@@ -15,6 +15,7 @@
 @synthesize multiplayerButton;
 @synthesize timeRemaining;
 @synthesize where;
+@synthesize abortButton;
 
 bool isWinningSquare = NO;
 
@@ -99,6 +100,16 @@ bool isWinningSquare = NO;
 	[win prepareToPlay];
 	
 	[self becomeFirstResponder];
+    [abortButton setHidden:YES];
+}
+
+- (IBAction)abortGame:(id)sender {
+    NSLog(@"Abort button pressed.");
+    
+    [[Skillz skillzInstance] notifyPlayerAbortWithCompletion:^{
+        NSLog(@"Aborted the game");
+    }];
+    [self resetGameAndClearBoard];
 }
 
 - (IBAction)startMultiplayerButton:(id)sender {
@@ -109,6 +120,7 @@ bool isWinningSquare = NO;
                                                                         [self resetGameAndClearBoard];
                                                                         [startButton setHidden:YES];
                                                                         [multiplayerButton setHidden:YES];
+                                                                        [abortButton setHidden:NO];
                                                                     } tournamentWillBegin:^(NSDictionary *matchRules) {
                                                                         NSLog(@"Tournament launching!");
         
@@ -119,6 +131,7 @@ bool isWinningSquare = NO;
                                                                         [self resetGame];
                                                                         [startButton setHidden:NO];
                                                                         [multiplayerButton setHidden:NO];
+                                                                        [abortButton setHidden:YES];
                                                                     }];
 }
 

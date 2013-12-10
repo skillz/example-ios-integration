@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="monkeyViewController">
             <connections>
+                <outlet property="abortButton" destination="KhM-pA-GmI" id="bSs-3m-44T"/>
                 <outlet property="multiplayerButton" destination="OkD-xd-taZ" id="ohi-2L-yxm"/>
                 <outlet property="startButton" destination="18" id="32"/>
                 <outlet property="timeRemaining" destination="20" id="30"/>
@@ -136,6 +137,17 @@
                     </state>
                     <connections>
                         <action selector="startMultiplayerButton:" destination="-1" eventType="touchUpInside" id="LDr-F7-gdo"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KhM-pA-GmI">
+                    <rect key="frame" x="11" y="434" width="75" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                    <state key="normal" title="Abort">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="abortGame:" destination="-1" eventType="touchUpInside" id="EoQ-Th-wF4"/>
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="19">
