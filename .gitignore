@@ -18,3 +18,4 @@ SkillzTestWorkspace.xcworkspace/xcshareddata/**
 *.swp
 SkillzSDK-iOS/version_info.txt
 version_info.txt
+SkillzSDK-iOS.embeddedframework/**
