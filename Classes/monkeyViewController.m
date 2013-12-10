@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "monkeyViewController.h"
+#import <SkillzSDK-iOS/Skillz.h>
 
 @implementation monkeyViewController
 @synthesize startButton;
@@ -101,6 +102,19 @@
 
 - (IBAction)startMultiplayerButton:(id)sender {
     NSLog(@"Multiplayer button pressed.");
+    
+    [[Skillz skillzInstance] launchSkillzForOrientation:SkillzPortrait launchHasCompleted:^{
+                                                                        NSLog(@"Skillz launch has completed.");
+                                                                        [self resetGameAndClearBoard];
+                                                                    } tournamentWillBegin:^(NSDictionary *matchRules) {
+                                                                        NSLog(@"Tournament launching!");
+        
+                                                                        [self resetGameAndClearBoard];
+                                                                        [self startGame];
+                                                                    } skillzWillExit:^{
+                                                                        NSLog(@"Skillz exiting.");
+                                                                        [self resetGameAndClearBoard];
+                                                                    }];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -145,7 +159,9 @@
 	elapsed_seconds = 0;
 }
 
-- (void) startGame {
+- (void) resetGameAndClearBoard {
+    [self resetGame];
+    
     for (int i=1001; i < 1010; ++i) {
 		UIButton *b = (UIButton *)[self.view viewWithTag:i];
 		[b setImage:nil forState:UIControlStateNormal];
@@ -162,7 +178,11 @@
 	if (clock) {
 		[clock invalidate];
 	}
-	clock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+}
+
+- (void) startGame {
+    [self resetGameAndClearBoard];
+    clock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
 }
 
 - (IBAction)startGameButton:(id)sender {
