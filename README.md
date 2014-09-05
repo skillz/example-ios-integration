@@ -1,14 +1,4 @@
-example-ios-integration
-=======================
+This is the former home of the Skillz Find The Monkey demo project.
 
-This is an example integration of Skillz for iOS with a very simple game, Find the Monkey.
+This project is no longer maintained and users are encouraged to download the latest example projects at https://skillz.com/developer.
 
-After cloning this repository, you must import the Skillz SDK in to the project. You can download the latest version of the Skillz iOS SDK from:
-
-https://skillz.com/developer/downloads
-
-Here are instructions for how to import the SDK in to the project:
-
-https://skillz.com/developer/docs/install_framework_ios
-
-After you import Skillz in to the project, you should be able to run the game succesfully!
